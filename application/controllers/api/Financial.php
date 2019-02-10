@@ -52,16 +52,16 @@ class Financial extends REST_Controller {
 
         $params['resource_id'] = $this->api_config->resource_id;
 
-        if($start_date && $end_date)
-        {
-            $params['between[end_of_month]'] = $start_date.','.$end_date;
-        }
+        
+        $params['between[end_of_month]'] = $start_date.','.$end_date;
+
        
         $api_response = $this->call_api($params);        
 
         //print_r($response);
         $response = ['status'=>$api_response['status'],'status_code'=>$api_response['status_code'],'msg'=>$api_response['msg']]; 
 
+        $response['result'] = [];
         if(!empty($api_response['result']))
         {
             foreach($api_response['result'] as $record)
@@ -114,10 +114,9 @@ class Financial extends REST_Controller {
         
         $params['resource_id'] = $this->api_config->resource_id;
 
-        if($start_date && $end_date)
-        {
-            $params['between[end_of_month]'] = $start_date.','.$end_date;
-        }
+        
+        $params['between[end_of_month]'] = $start_date.','.$end_date;
+        
        
         $api_response = $this->call_api($params);        
         
@@ -136,7 +135,7 @@ class Financial extends REST_Controller {
             $banks_savings_deposits = 0;
             $fc_savings_deposits = 0;
 
-
+            $response['result'] = [];
             foreach($api_response['result'] as $record)
             {                
                 $banks_fixed_deposits_3m += $record->banks_fixed_deposits_3m;
