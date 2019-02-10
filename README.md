@@ -31,7 +31,7 @@ $ php bin/install.php restserver 2.7.2
 $ composer require rmccue/requests
 ```
 
-###Install PHPUnit Test
+### Install PHPUnit Test
 
 ```
 $ composer require phpunit/phpunit ^5.7
@@ -39,7 +39,7 @@ $ composer require kenjis/ci-phpunit-test
 $ php vendor/kenjis/ci-phpunit-test/install.php
 ```
 
-###Download the project files
+### Download the project files
 ```
 $ cd mom-homework-ci
 $ git init
@@ -63,8 +63,9 @@ $ ..\..\vendor\bin\phpunit  (windows)
 $../../vendor/bin/phpunit  (Unix/Mac)
 ```
 
-##API Document
-####URL
+## API Document
+#### URL
+
 **For Trend:**
 http://127.0.0.1:8000/api/financial
 
@@ -90,7 +91,8 @@ Response (JSON)
 | result  |  list of matching results |
 
 
-##UI
+## UI
+
 I have provided simple UI to show the Trend and Average chart.  
 The UI is included in the same package. 
 
