@@ -33,6 +33,18 @@ class Financial_test extends TestCase
 
 		$this->assertEquals(12, count($json->result));		
 	}
+	
+	public function test_date_check()
+	{
+		$s_date = '';
+		$e_date = '';
+		
+		$output = $this->request('GET', 'api/financial?start_date='.$s_date.'&end_date='.$e_date.'&rate_type=fixed');
+
+		$this->assertContains('"result":[]', $output);
+		echo "test_date_check: no result due to no specified date";
+		
+	}
 
 	/** Test for savings deposit **/
 	public function test_results_val_fixed()
