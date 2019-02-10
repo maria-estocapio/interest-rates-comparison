@@ -81,7 +81,7 @@ http://127.0.0.1:8000/api/financial/average
 |  period | this is the period ex. 3 for 3month , 6 for 6-month or 12 for 12-month period  |
 |  rate_type |  this is the type of rate ex. *fixed or savings* |
 
-Response (JSON)
+**Response (JSON)**
 
 | Response Field  |  Description |
 | ------------ | ------------ |
