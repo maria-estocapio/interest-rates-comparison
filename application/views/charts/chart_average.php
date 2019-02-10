@@ -107,11 +107,11 @@
 			});	
 		}
 
-		$(document).ready(function(){					
-			myBarChart.destroy();
+		$(document).ready(function(){								
 			load_chart();
 
 			$('#submit').on('click',function(){
+				myBarChart.destroy();
 				load_chart();
 			});	       		     
 		});
