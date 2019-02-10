@@ -64,6 +64,7 @@
 	</div>
 </main>
 	<script>
+		var myChart;
 		function load_chart()
 		{
 			var sdate = $('#start_datepicker').val();
@@ -105,7 +106,7 @@
 						}
 					
 					   var ctx = document.getElementById("chart-area").getContext("2d");
-					   var myChart = new Chart(ctx, {
+					   myChart = new Chart(ctx, {
 					      type: 'line',
 					      data: {
 					         labels: labels,
@@ -202,6 +203,7 @@
 		$(document).ready(function(){	
 
 			$('#submit').on('click',function(){
+				myChart.destroy();
 				load_chart();
 			});
 

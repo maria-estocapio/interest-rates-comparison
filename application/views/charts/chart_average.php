@@ -47,6 +47,7 @@
 	</div>
 </main>
 	<script>
+		var myBarChart;
 		function load_chart()
 		{
 			var sdate = $('#start_datepicker').val();
@@ -59,8 +60,6 @@
 			    	var source1 = [];
 					var source2 = [];
 
-					console.log(api_response);
-					
 					source1.push(api_response.result.banks_fixed_deposits_3m_average);
 					source1.push(api_response.result.banks_fixed_deposits_6m_average);
 					source1.push(api_response.result.banks_fixed_deposits_12m_average);
@@ -71,7 +70,6 @@
 					source2.push(api_response.result.fc_fixed_deposits_12m_average);
 					source2.push(api_response.result.fc_savings_deposits);
 					
-					console.log(source1);
 					
 					
 					var data = {
@@ -88,7 +86,8 @@
 						  ]
 						};
 					var ctx = document.getElementById("chart-area").getContext("2d");
-					var myBarChart = new Chart(ctx, {
+					
+					myBarChart = new Chart(ctx, {
 						  type: 'bar',
 						  data: data,
 						  options: {
@@ -109,9 +108,9 @@
 		}
 
 		$(document).ready(function(){					
-
+			myBarChart.destroy();
 			load_chart();
-			
+
 			$('#submit').on('click',function(){
 				load_chart();
 			});	       		     

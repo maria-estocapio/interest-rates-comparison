@@ -91,20 +91,8 @@ class Financial extends REST_Controller {
                             $response['result'][] = $this->periods($period, $record);
                                                           
                         break;
-                        default:
-
-
-                            $response['result'][] = [
-                                    'end_of_month'=>$end_month,
-                                    'banks_fixed_deposits_3m'=>$banks_fixed_deposits_3m,
-                                    'banks_fixed_deposits_6m'=>$banks_fixed_deposits_6m,
-                                    'banks_fixed_deposits_12m'=>$banks_fixed_deposits_12m,
-                                    'fc_fixed_deposits_3m'=>$fc_fixed_deposits_3m,
-                                    'fc_fixed_deposits_6m'=>$fc_fixed_deposits_6m,
-                                    'fc_fixed_deposits_12m'=>$fc_fixed_deposits_12m,
-                                    'banks_savings_deposits'=>$banks_savings_deposits,
-                                    'fc_savings_deposits'=>$fc_savings_deposits,
-                                ];
+                    default:
+                            $response['result'][] = $this->periods($period, $record);                           
                         break;
                     }                                
             }
