@@ -37,14 +37,25 @@ class Financial_test extends TestCase
 	/** Test for savings deposit **/
 	public function test_results_val_fixed()
 	{
-		$output = $this->request('GET', 'api/financial?start_date=2018-01&end_date=2018-01&rate_type=fixed');
+		$output = $this->request('GET', 'api/financial?start_date=2018-06&end_date=2018-07&rate_type=fixed');
 		
+		$this->assertContains('"end_of_month":"2018 Jun"', $output);
 		$this->assertContains('"banks_fixed_deposits_3m":"0.15"', $output);		
 		$this->assertContains('"banks_fixed_deposits_6m":"0.22"', $output);		
-		$this->assertContains('"banks_fixed_deposits_12m":"0.34"', $output);		
+		$this->assertContains('"banks_fixed_deposits_12m":"0.37"', $output);		
 		$this->assertContains('"fc_fixed_deposits_3m":"0.30"', $output);		
 		$this->assertContains('"fc_fixed_deposits_6m":"0.38"', $output);		
-		$this->assertContains('"fc_fixed_deposits_12m":"0.50"', $output);		
+		$this->assertContains('"fc_fixed_deposits_12m":"0.50"', $output);	
+
+		$this->assertContains('"end_of_month":"2018 Jul"', $output);
+		$this->assertContains('"banks_fixed_deposits_3m":"0.16"', $output);		
+		$this->assertContains('"banks_fixed_deposits_6m":"0.23"', $output);		
+		$this->assertContains('"banks_fixed_deposits_12m":"0.38"', $output);		
+		$this->assertContains('"fc_fixed_deposits_3m":"0.30"', $output);		
+		$this->assertContains('"fc_fixed_deposits_6m":"0.38"', $output);		
+		$this->assertContains('"fc_fixed_deposits_12m":"0.50"', $output);
+		
+		echo "test_results_val_fixed: passed";
 	}
 
 	/** Test for fixed deposit **/
@@ -55,14 +66,33 @@ class Financial_test extends TestCase
 		
 		$this->assertContains('"banks_savings_deposits":"0.16"', $output);			
 		$this->assertContains('"fc_savings_deposits":"0.17"', $output);			
+		echo "test_results_val_savings: passed";
+	}
+	//Test for period input 
+	public function test_results_period()
+	{
+		
+		$output = $this->request('GET', 'api/financial?start_date=2018-01&end_date=2018-01&period = 3&rate_type=savings');
+		
+		$this->assertContains('"end_of_month":"2018 Jan"', $output);
+		$this->assertContains('"banks_savings_deposits":"0.16"', $output);			
+		$this->assertContains('"fc_savings_deposits":"0.17"', $output);		
+		echo "test_results_period: passed";
 	}
 
 	/** Test for average **/
-	public function test_averate()
-	{
-		$ave = $this->financial->get_average(10, 5);
-
-		$this->assertEquals(2, $ave);		
+	public function test_average()
+	{	
+		$output = $this->request('GET', 'api/financial/average?start_date=2015-01&end_date=2019-01&rate_type=savings');
+		$this->assertContains('"banks_fixed_deposits_3m_average":0.16', $output);			
+		$this->assertContains('"banks_fixed_deposits_6m_average":0.23', $output);	
+		$this->assertContains('"banks_fixed_deposits_12m_average":0.35', $output);
+		$this->assertContains('"banks_savings_deposits":0.15', $output);	
+		$this->assertContains('"fc_fixed_deposits_3m_average":0.27', $output);			
+		$this->assertContains('"fc_fixed_deposits_6m_average":0.35', $output);	
+		$this->assertContains('"fc_fixed_deposits_12m_average":0.51', $output);
+		$this->assertContains('"fc_savings_deposits":0.17', $output);		
+		echo "test_average: passed";
 	}
 
 
